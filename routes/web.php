@@ -1,10 +1,15 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
+use App\Models\Item;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ItemController;
+use App\Http\Controllers\ProfileController;
 
 Route::get('/', function () {
     return view('welcome');
+});
+Route::get('/index', function () {
+    return view('item.index');
 });
 
 Route::get('/dashboard', function () {
@@ -18,3 +23,5 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
+
+Route::resource('items',ItemController::class);

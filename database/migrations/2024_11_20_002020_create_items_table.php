@@ -15,9 +15,9 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->longtext('description');
-            $table->string('dimensions');
-            $table->int('stock_amount');
-            $table->int('reserved_amount');
+            $table->string('dimensions')->default('none provided');
+            $table->integer('stock_amount')->default(0);
+            $table->integer('reserved_amount')->default(0);
             $table->timestamps();
         });
     }
