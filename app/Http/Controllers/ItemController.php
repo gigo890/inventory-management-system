@@ -40,14 +40,17 @@ class ItemController extends Controller
         ]);
 
 
-        $path = time() .'.'. $request->image->getClientOriginalExtension();
-        Storage::put($path, $request->file('image'));
+        // $path = 'images/' . time() .'.'. $request->image->getClientOriginalExtension();
+        // Storage::disk('local')->put($path, $request->file('image'));
+
+        $path = time().'.'.request()->image->getClientOriginalExtension();
+        request()->image->move(public_path('images'), $path);
 
         $item = new Item([
             'name'=> $request->name,
             'description'=> $request->description,
             'dimensions'=> $request->dimensions,
-            'image_path' => asset($path),
+            'image_path' => asset('/images/' . $path),
         ]);
         $item->save();
     }
