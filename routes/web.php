@@ -50,3 +50,17 @@ Route::get('/login', function () {
 Route::post('/register', [UserRegisterController::class, 'store'])->name('user_register.store');
 Route::post('/login', [UserRegisterController::class, 'login'])->name('user_register.login');
 Route::get('/logout', [UserRegisterController::class, 'logout'])->name('user_register.logout');
+
+
+Route::get('/logout', function () {
+    if (session()->has('user_id')) {
+        session()->flush();
+    }
+    return redirect('/');
+});
+// view users
+Route::group(['middleware' => ['adminrestrictions']], function () {
+Route::view('view-users','admin.view-users');
+Route::get('/view-userajax', [userController::class, 'view_users']);
+Route::post('/update-user-status', [UserController::class, 'updateStatus']);
+});
