@@ -11,6 +11,9 @@ Route::get('/', function () {
 Route::get('/index', function () {
     return view('item.index');
 });
+Route::get('/inventory', function(){
+    return view('items.inventory');
+});
 
 Route::get('/dashboard', function () {
     return view('dashboard');

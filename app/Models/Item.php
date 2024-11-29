@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Database\Factories\ItemFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -11,4 +12,9 @@ class Item extends Model
     protected $guarded = [];
 
     use HasFactory;
+
+    protected static function newFactory()
+    {
+        return ItemFactory::new();
+    }
 }

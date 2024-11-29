@@ -20,6 +20,13 @@ class ItemController extends Controller
         return view("items.index")->with('items', $items);
     }
 
+    public function inventory()
+    {
+        $user_id = Auth::id();
+        $items = Item::paginate(10);
+        return view('items.inventory')->with('items', $items);
+    }
+
     /**
      * Show the form for creating a new resource.
      */
