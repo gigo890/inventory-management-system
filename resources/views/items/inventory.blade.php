@@ -6,7 +6,7 @@
     </x-slot>
 
    <div class="py-12">
-        <table>
+        {{-- <table class="">
             <tr>
                 <th>Id</th>
                 <th>Name</th>
@@ -29,6 +29,58 @@
             @empty
                 <p>There are no items to display</p>
             @endforelse
-        </table>
+        </table> --}}
+
+
+<div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+    <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+        <thead class="text-xs text-gray-700 uppercase dark:text-gray-400">
+            <tr>
+                <th scope="col" class="px-6 py-3 bg-gray-50">
+                    Id
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Name
+                </th>
+                <th scope="col" class="px-6 py-3 bg-gray-50">
+                    Image Path
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Description
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Price
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @forelse($items as $item)
+            <tr class="border-b border-gray-200 dark:border-gray-700">
+                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap bg-gray-50 dark:text-white dark:bg-gray-800">
+                    {{ ($item->name) }}
+                </th>
+                <td class="px-6 py-4">
+                    {{($item->image_path) }}
+                </td>
+                <td class="px-6 py-4">
+                    {{ ($item->description) }}
+                </td>
+                <td class="px-6 py-4">
+                    £{{ number_format($item->price, 2) }}
+                </td>
+                <td class="px-6 py-4 bg-gray-50 dark:bg-gray-800">
+                    {{ $item->stock_amount }}
+                </td>
+                <td class="px-6 py-4">
+                    {{ ($item->$reserved_amount) }}
+                </td>
+            </tr>
+            @empty
+            <p>No items to display.</p>
+            @endforelse
+        </tbody>
+    </table>
+</div>
+
     </div>
 </x-app-layout>
