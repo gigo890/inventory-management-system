@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('_items_', function (Blueprint $table) {
+        Schema::table('items', function (Blueprint $table) {
             $table->double('price')->default(0.00);
         });
     }
