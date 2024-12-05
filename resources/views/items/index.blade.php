@@ -47,7 +47,9 @@
                 @empty
                 <p>There are no items to display.</p>
                 @endforelse
-                {{ $items->links() }}
+            </div>
+            <div class='justify-between justify-items-center m-4'>
+            {{ $items->links() }}
             </div>
         </div>
     </div>
