@@ -11,9 +11,6 @@ Route::get('/', function () {
 Route::get('/index', function () {
     return view('item.index');
 });
-Route::get('/inventory', function(){
-    return view('items.inventory');
-});
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -27,4 +24,13 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__.'/auth.php';
 
+Route::get('/inventory',[ItemController::class, 'inventory'])->name('inventory');
 Route::resource('items',ItemController::class);
+
+// Route::controller(ItemController::class)->group(function() {
+//     Route::get('/items', 'index');
+//     Route::get('/items/{id}', 'show');
+//     Route::get('/inventory', 'ItemController@inventory');
+//     Route::get('/inventory/create','create');
+// });
+// Route::controller('items', 'ItemController');
