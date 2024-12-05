@@ -29,7 +29,7 @@
                 @forelse ($items as $item)
                 <div class="flex flex-col flex-wrap m-5 w-[300px] h-[550px] max-w-sm max-h-md bg-white border border-gray-200 rounded-lg rounded-lg dark:border-gray-700">
                     <a href="#" >
-                    <img class="rounded-t-lg object-fit:cover rounded-t-lg " src="{{ ($item->image_path)  }}" width="100%" height="250" alt="" />
+                    <img class="rounded-t-lg object-fit:cover rounded-t-lg " src="{{ asset($item->image_path)  }}" width="100%" height="250" alt="" />
                     </a>
                     <div class="p-5  w=100% h=100%" >
                         <a href="#">
