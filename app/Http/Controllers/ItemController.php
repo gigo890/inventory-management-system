@@ -57,9 +57,11 @@ class ItemController extends Controller
             'name'=> $request->name,
             'description'=> $request->description,
             'dimensions'=> $request->dimensions,
+            'stock_amount' => $request->stock,
             'image_path' => $path,
         ]);
         $item->save();
+        return back()->with('success', 'Item Added Successfully');
     }
 
     /**

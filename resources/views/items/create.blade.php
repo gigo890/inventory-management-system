@@ -1,12 +1,13 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            Items
+        <h2 class="font-semibold text-xl leading-tight">
+            Create New Item
         </h2>
     </x-slot>
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
+            <x-back-button></x-back-button>
             <div class="bg-white p-6 overflow-hidden shadow-sm sm:rounded-lg max-w-2xl">
               <form action="{{ route('items.store') }}" method="post" enctype="multipart/form-data" >
                 @csrf
@@ -31,6 +32,11 @@
                     <input type="file" accept="image/*"name="image" class="mt-1" placeholder="Upload Image"></input>
                 </x-input-group>
                 <x-primary-button class="mt-6">Save item</x-primary-button>
+                @if(Session::has('success'))
+                    <div>
+                        {{ Session::get('success') }}
+                    </div>
+                @endif
               </form>
             </div>
         </div>
