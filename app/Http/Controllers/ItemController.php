@@ -16,7 +16,7 @@ class ItemController extends Controller
     public function index()
     {
         $user_id = Auth::id();
-        $items = Item::simplePaginate(5);
+        $items = Item::simplePaginate(6);
         return view("items.index")->with('items', $items);
     }
 
