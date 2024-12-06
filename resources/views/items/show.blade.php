@@ -12,7 +12,7 @@
 
             {{-- ITEM IMAGE --}}
             <div class="flex justify-center min-w-300px w-6/12 m-2 rounded-lg border-2  dark:border-gray-700">
-                <img src="{{ ($item->image_path)  }}" alt="Item Image" class="rounded-lg">
+                <img src="{{ asset($item->image_path)  }}" alt="Item Image" class="rounded-lg">
             </div>
 
             {{-- ITEM NAME --}}
