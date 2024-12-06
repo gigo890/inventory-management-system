@@ -16,14 +16,14 @@ class ItemController extends Controller
     public function index()
     {
         $user_id = Auth::id();
-        $items = Item::paginate(5);
+        $items = Item::simplePaginate(6);
         return view("items.index")->with('items', $items);
     }
 
     public function inventory()
     {
         $user_id = Auth::id();
-        $items = Item::paginate(10);
+        $items = Item::simplePaginate(10);
         return view('items.inventory')->with('items', $items);
     }
 
@@ -50,16 +50,18 @@ class ItemController extends Controller
         // $path = 'images/' . time() .'.'. $request->image->getClientOriginalExtension();
         // Storage::disk('local')->put($path, $request->file('image'));
 
-        $path = time().'.'.request()->image->getClientOriginalExtension();
+        $path = 'images/'.time().'.'.request()->image->getClientOriginalExtension();
         request()->image->move(public_path('images'), $path);
 
         $item = new Item([
             'name'=> $request->name,
             'description'=> $request->description,
             'dimensions'=> $request->dimensions,
-            'image_path' => asset('/images/' . $path),
+            'stock_amount' => $request->stock,
+            'image_path' => $path,
         ]);
         $item->save();
+        return back()->with('success', 'Item Added Successfully');
     }
 
     /**

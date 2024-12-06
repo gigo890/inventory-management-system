@@ -1,13 +1,12 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl leading-tight">
-            Create New Item
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            Edit Item
         </h2>
     </x-slot>
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
-            <x-back-button></x-back-button>
             <div class="bg-white p-6 overflow-hidden shadow-sm sm:rounded-lg max-w-2xl">
               <form action="{{ route('items.store') }}" method="post" enctype="multipart/form-data" >
                 @csrf
@@ -19,24 +18,10 @@
                 @error('description')
                     <div class="text-sm mt-1 text-red-500">{{ $message }}</div>
                 @enderror
-                <div>
-                    <x-input-label for="dimensions">Dimensions</x-input-label>
-                    <x-text-input name="dimensions" class="w-full" placeholder="Item dimensions" value="not provided"></x-text-input>
-                </div>
-                <x-input-group>
-                    <x-input-label for="stock">Stock:</x-input-label>
-                    <x-number-input name="stock" min="0" class="" placeholder="##" value="0"></x-number-input>
-                </x-input-group>
-                <x-input-group>
-                    <x-input-label for="image">Image:</x-input-label>
-                    <input type="file" accept="image/*"name="image" class="mt-1" placeholder="Upload Image"></input>
-                </x-input-group>
+                <x-text-input name="dimensions" class="w-full" placeholder="Item dimensions" value="not provided"></x-text-input>
+                <x-number-input name="stock" class="w-full" value="{{ @old('stock_amount') }}"><x=number-input>
+                <input type="file" accept="image/*"name="image" class="mt-6" placeholder="Upload Image"></input>
                 <x-primary-button class="mt-6">Save item</x-primary-button>
-                @if(Session::has('success'))
-                    <div>
-                        {{ Session::get('success') }}
-                    </div>
-                @endif
               </form>
             </div>
         </div>
