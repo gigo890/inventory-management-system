@@ -8,8 +8,8 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
             <x-back-button></x-back-button>
-            <div class="bg-white p-6 overflow-hidden shadow-sm sm:rounded-lg max-w-2xl">
-              <form action="{{ route('items.store') }}" method="post" enctype="multipart/form-data" >
+            <div class="w-fill mx-20 flex justify-center">
+              <form action="{{ route('items.store') }}" method="post" enctype="multipart/form-data" class="bg-white p-6 overflow-hidden shadow-sm sm:rounded-lg max-w-2xl">
                 @csrf
                 <x-text-input name="name" class="w-full" placeholder="Item name" value="{{ @old('name') }}"></x-text-input>
                 @error('name')
