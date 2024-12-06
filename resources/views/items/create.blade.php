@@ -18,8 +18,18 @@
                 @error('description')
                     <div class="text-sm mt-1 text-red-500">{{ $message }}</div>
                 @enderror
-                <x-text-input name="dimensions" class="w-full" placeholder="Item dimensions" value="not provided"></x-text-input>
-                <input type="file" accept="image/*"name="image" class="mt-6" placeholder="Upload Image"></input>
+                <div>
+                    <x-input-label for="dimensions">Dimensions</x-input-label>
+                    <x-text-input name="dimensions" class="w-full" placeholder="Item dimensions" value="not provided"></x-text-input>
+                </div>
+                <x-input-group>
+                    <x-input-label for="stock">Stock:</x-input-label>
+                    <x-number-input name="stock" min="0" class="" placeholder="##" value="0"></x-number-input>
+                </x-input-group>
+                <x-input-group>
+                    <x-input-label for="image">Image:</x-input-label>
+                    <input type="file" accept="image/*"name="image" class="mt-1" placeholder="Upload Image"></input>
+                </x-input-group>
                 <x-primary-button class="mt-6">Save item</x-primary-button>
               </form>
             </div>
