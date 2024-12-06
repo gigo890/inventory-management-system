@@ -6,7 +6,7 @@
     </x-slot>
 
    <div class="py-12 m-4 ">
-        <a type="button" href="{{ route('items.create') }}" class=" m-4 mb-4 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+        <a type="button" href="{{ route('items.create') }}" class=" m-4 mb-4 text-white bg-gray-800 hover:bg-blue-800 focus:ring-4 focus:ring-gray-800 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
             + Add New Item
         </a>
         <div class="relative overflow-x-auto shadow-md sm:rounded-lg dark:border-gray-800 border">
@@ -41,7 +41,7 @@
                 </thead>
                 <tbody>
                     @forelse($items as $item)
-                    <tr class="h-20 border-b border-gray-200 dark:border-gray-700 justify-items-center items-center">
+                    <tr class="h-20 border-b border-gray-200 border-gray-700 justify-items-center items-center dark:text-white">
 
                         <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap bg-gray-50 dark:text-white dark:bg-gray-800 ">
                             {{($item->id) }}
@@ -64,11 +64,11 @@
                         <td class="px-6 py-4 bg-gray-50 border-l-gray-400 border-l-2 dark:bg-gray-800 text-white">
                             {{ ($item->reserved_amount) }}
                         </td>
-                        <td class="h-full px-6 py-4 flex justify-center justify-items-center align-center divide-x dark:divide-gray-700">
-                                <a href="" class="px-2 dark:text-blue-500 hover:text-purple-500 hover:underline">
+                        <td class="h-full px-6 py-4 flex justify-center justify-items-center align-center divide-x dark:divide-white divide-gray-700">
+                                <a href="" class="px-2 text-blue-500 dark:text-white hover:text-purple-500 dark:hover:text-gray-100 hover:underline">
                                 Edit
                                 </a>
-                                <a href="" class="px-2 dark:text-blue-500 hover:text-purple-500 hover:underline">
+                                <a href="" class="px-2 text-blue-500 dark:text-white hover:text-purple-500 dark:hover:text-gray-100 hover:underline">
                                     Remove
                                 </a>
                         </td>
