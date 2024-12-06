@@ -6,9 +6,9 @@
     </x-slot>
 
    <div class="py-12 m-4 ">
-        <button type="button" href="{{ route('items.create') }}" class=" m-4 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+        <a type="button" href="{{ route('items.create') }}" class=" m-4 mb-4 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
             + Add New Item
-        </button>
+        </a>
         <div class="relative overflow-x-auto shadow-md sm:rounded-lg dark:border-gray-800 border">
             <table class="w-full text-sm text-left rtl:text-right dark:text-gray-500 dark:text-gray-400 ">
                 <thead class="text-xs dark:text-gray-700 uppercase dark:text-gray-400 dark:bg-gray-200">
@@ -34,11 +34,14 @@
                         <th scope="col" class="px-6 py-3">
                             Reserved
                         </th>
+                        <th scope="col" class="px-6 py-3">
+                            Action
+                        </th>
                     </tr>
                 </thead>
                 <tbody>
                     @forelse($items as $item)
-                    <tr class="max-h-[]] border-b border-gray-200 dark:border-gray-700 ">
+                    <tr class="h-20 border-b border-gray-200 dark:border-gray-700 justify-items-center items-center">
 
                         <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap bg-gray-50 dark:text-white dark:bg-gray-800 ">
                             {{($item->id) }}
@@ -49,7 +52,7 @@
                         <td class="px-6 py-4">
                             {{($item->image_path) }}
                         </td>
-                        <td class="px-6 py-4 text-ellipsis">
+                        <td class="px-6 py-4 line-clamp-1">
                             {{ ($item->description) }}
                         </td>
                         <td class="px-6 py-4">
@@ -61,10 +64,13 @@
                         <td class="px-6 py-4 bg-gray-50 border-l-gray-400 border-l-2 dark:bg-gray-800 text-white">
                             {{ ($item->reserved_amount) }}
                         </td>
-                        <td class="px-6 py-4 flex justify-center justify-items-center">
-                            <button type="button" href="" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+                        <td class="h-full px-6 py-4 flex justify-center justify-items-center align-center divide-x dark:divide-gray-700">
+                                <a href="" class="px-2 dark:text-blue-500 hover:text-purple-500 hover:underline">
                                 Edit
-                            </button>
+                                </a>
+                                <a href="" class="px-2 dark:text-blue-500 hover:text-purple-500 hover:underline">
+                                    Remove
+                                </a>
                         </td>
                     </tr>
                     @empty
