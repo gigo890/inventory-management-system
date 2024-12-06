@@ -5,12 +5,12 @@
         </h2>
     </x-slot>
 
-   <div class="py-12">
-        <button type="button" href="{{ route('items.create') }}" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+   <div class="py-12 m-4 ">
+        <button type="button" href="{{ route('items.create') }}" class=" m-4 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
             + Add New Item
         </button>
-        <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-            <table class="w-full text-sm text-left rtl:text-right dark:text-gray-500 dark:text-gray-400">
+        <div class="relative overflow-x-auto shadow-md sm:rounded-lg dark:border-gray-800 border">
+            <table class="w-full text-sm text-left rtl:text-right dark:text-gray-500 dark:text-gray-400 ">
                 <thead class="text-xs dark:text-gray-700 uppercase dark:text-gray-400 dark:bg-gray-200">
                     <tr>
                         <th scope="col" class="px-6 py-3">
@@ -61,8 +61,8 @@
                         <td class="px-6 py-4 bg-gray-50 border-l-gray-400 border-l-2 dark:bg-gray-800 text-white">
                             {{ ($item->reserved_amount) }}
                         </td>
-                        <td>
-                            <button type="button" href="" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+                        <td class="px-6 py-4 flex justify-center justify-items-center">
+                            <button type="button" href="" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
                                 Edit
                             </button>
                         </td>
@@ -72,6 +72,9 @@
                     @endforelse
                 </tbody>
             </table>
+        </div>
+        <div class="m-4">
+            {{ $items->links() }}
         </div>
 
     </div>
