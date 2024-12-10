@@ -65,7 +65,7 @@
                             {{ ($item->reserved_amount) }}
                         </td>
                         <td class="h-full px-6 py-4 flex justify-center justify-items-center align-center divide-x dark:divide-white divide-gray-700">
-                                <a href="" class="px-2 text-blue-500 dark:text-white hover:text-purple-500 dark:hover:text-gray-100 hover:underline">
+                                <a href="{{ route('items.edit',$item)  }}" class="px-2 text-blue-500 dark:text-white hover:text-purple-500 dark:hover:text-gray-100 hover:underline">
                                 Edit
                                 </a>
                                 <a href="" class="px-2 text-blue-500 dark:text-white hover:text-purple-500 dark:hover:text-gray-100 hover:underline">
