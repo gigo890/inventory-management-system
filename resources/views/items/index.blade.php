@@ -23,6 +23,9 @@
 
     {{-- CONTENT --}}
    <div class="py-12">
+            <div class='justify-between justify-items-center m-4'>
+            {{ $items->links() }}
+            </div>
         <div class="flex flex-row flex-wrap justify-center content-center max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
                 @forelse ($items as $item)
                     <x-index-item :item=$item>
@@ -31,9 +34,6 @@
                 @empty
                 <p>There are no items to display.</p>
                 @endforelse
-            </div>
-            <div class='justify-between justify-items-center m-4'>
-            {{ $items->links() }}
             </div>
         </div>
     </div>

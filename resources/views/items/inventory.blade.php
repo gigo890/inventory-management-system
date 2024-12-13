@@ -6,11 +6,15 @@
     </x-slot>
 
    <div class="py-12 m-4 ">
-        <a type="button" href="{{ route('items.create') }}" class=" m-4 mb-4 text-white bg-gray-800 hover:bg-blue-800 focus:ring-4 focus:ring-gray-800 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+        <a type="button" href="{{ route('items.create') }}" class=" m-4 mb-4 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
             + Add New Item
         </a>
+
+        <div class='justify-between justify-items-center m-4'>
+            {{ $items->links() }}
+        </div>
         <div class="relative overflow-x-auto shadow-md sm:rounded-lg dark:border-gray-800 border">
-            <table class="w-full text-sm text-left rtl:text-right dark:text-gray-500 dark:text-gray-400 ">
+            <table class="w-full text-sm text-left rtl:text-right dark:text-white ">
                 <thead class="text-xs dark:text-gray-700 uppercase dark:text-gray-400 dark:bg-gray-200">
                     <tr>
                         <th scope="col" class="px-6 py-3">
@@ -41,7 +45,7 @@
                 </thead>
                 <tbody>
                     @forelse($items as $item)
-                    <tr class="h-20 border-b border-gray-200 border-gray-700 justify-items-center items-center dark:text-white">
+                    <tr class="h-20 border-b border-gray-200 dark:border-gray-700 dark: justify-items-center items-center">
 
                         <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap bg-gray-50 dark:text-white dark:bg-gray-800 ">
                             {{($item->id) }}
@@ -68,7 +72,7 @@
                                 <a href="{{ route('items.edit',$item)  }}" class="px-2 text-blue-500 dark:text-white hover:text-purple-500 dark:hover:text-gray-100 hover:underline">
                                 Edit
                                 </a>
-                                <a href="" class="px-2 text-blue-500 dark:text-white hover:text-purple-500 dark:hover:text-gray-100 hover:underline">
+                                <a href="" class="px-2 dark:text-blue-500 hover:text-purple-500 hover:underline">
                                     Remove
                                 </a>
                         </td>
@@ -79,9 +83,5 @@
                 </tbody>
             </table>
         </div>
-        <div class="m-4">
-            {{ $items->links() }}
-        </div>
-
     </div>
 </x-app-layout>

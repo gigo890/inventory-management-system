@@ -16,14 +16,14 @@ class ItemController extends Controller
     public function index()
     {
         $user_id = Auth::id();
-        $items = Item::simplePaginate(6);
+        $items = Item::Paginate(6);
         return view("items.index")->with('items', $items);
     }
 
     public function inventory()
     {
         $user_id = Auth::id();
-        $items = Item::simplePaginate(10);
+        $items = Item::Paginate(10);
         return view('items.inventory')->with('items', $items);
     }
 
