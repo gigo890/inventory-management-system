@@ -25,6 +25,7 @@ Route::middleware('auth')->group(function () {
 require __DIR__.'/auth.php';
 
 Route::get('/inventory',[ItemController::class, 'inventory'])->name('inventory');
+Route::post("/items/{item}/edit", [ItemController::class, 'update'])->name('item.update');
 Route::resource('items',ItemController::class);
 
 // Route::controller(ItemController::class)->group(function() {
