@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\EditItemRequest;
 use App\Models\Item;
 use Faker\Guesser\Name;
 use Illuminate\Http\Request;
@@ -77,7 +78,7 @@ class ItemController extends Controller
      */
     public function edit(Item $item)
     {
-
+        return view('items.edit', ['item' => $item]);
     }
 
     /**
@@ -85,29 +86,40 @@ class ItemController extends Controller
      */
     public function update(Request $request, Item $item)
     {
-        //
+        //NEEDS FINISHING
+        //FORM SUBMISSION KEEPS REDIRECTING TO 'items/id'
+        //INSTEAD OF DOING WHAT IS IN THIS FUNCTION
 
-        $request->validate([
-            'name' => 'required',
-            'description' => 'required',
-            'image' => 'required',
-            'price' => 'required'
-        ]);
-        $path = 'images/'.time().'.'.request()->image->getClientOriginalExtension();
+        // $request->validate([
+        //     'name' => 'required',
+        //     'description' => 'required',
+        //     'image' => 'required',
+        //     'price' => 'required'
+        // ]);
+        // $path = 'images/'.time().'.'.request()->image->getClientOriginalExtension();
 
-        if($path != $item->image_path){
-            request()->image->move(public_path('images'), $path);
-        }
+        // if($path != $item->image_path){
+        //     request()->image->move(public_path('images'), $path);
+        // }
 
-        $item->name = $request->name;
-        $item->description = $request->description;
-        $item->dimensions = $request->dimensions;
-        $item->stock_amount = $request->stock;
-        $item->price = $request->price;
-        $item->image_path = $path;
+        // $item = Item::where('id' == $item->id);
+        // $item->name = $request->name;
+        // $item->description = $request->description;
+        // $item->dimensions = $request->dimensions;
+        // $item->stock_amount = $request->stock;
+        // $item->price = $request->price;
+        // $item->image_path = $path;
 
-        $item->save();
-        return back()->with('success', 'Item updated successfully');
+        // $item->save();
+
+        // $request->$item->update([
+        //     'name' => $request->name,
+        //     'dimensions' => $request->dimensions,
+        //     'stock_amount' => $request->stock,
+        //     'price' => $request->price,
+        //     'image_path' => $request->path
+        // ]);
+        // return redirect()->route('inventory');
     }
 
     /**

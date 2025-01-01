@@ -1,3 +1,4 @@
+
 <div class="relative p-4 w-full max-w-2xl h-full md:h-auto">
     <!-- Modal content -->
     <div class="relative p-4 bg-white rounded-lg shadow dark:bg-gray-800 sm:p-5">
@@ -12,9 +13,9 @@
             </button>
         </div>
         <!-- Modal body -->
-        <form action="{{ route('items.update', $item) }}" method="post" enctype="multipart/form-data" class="bg-white dark:bg-gray-200 p-6 overflow-hidden shadow-sm sm:rounded-lg max-w-2xl">
+        @if(isset($item))
+        <form action="{{ route('items.update', $item) }}" method="put" enctype="multipart/form-data" class="bg-white dark:bg-gray-200 p-6 overflow-hidden shadow-sm sm:rounded-lg max-w-2xl">
             @csrf
-            @method('PUT')
             <div class="grid gap-4 mb-4 sm:grid-cols-2">
                 <div>
                     <x-input-label for="name">Name</x-input-label>
@@ -34,7 +35,7 @@
                 </div>
                 <div class="sm:col-span-2">
                     <x-input-label for="description">Description</x-input-label>
-                    <x-textarea id="description" rows="5" value="{{ $item->price }}" placeholder="Write a description..."></x-textarea>
+                    <x-textarea id="description" rows="5" value="{{ $item   ->description }}" placeholder="Write a description..."></x-textarea>
                 </div>
             </div>
             <div class="flex items-center space-x-4">
@@ -47,5 +48,8 @@
                 </button>
             </div>
         </form>
+        @else
+        <p>There is no item to edit</p>
+        @endif
     </div>
 </div>

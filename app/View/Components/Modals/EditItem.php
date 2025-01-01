@@ -12,11 +12,9 @@ class EditItem extends Component
      * Create a new component instance.
      */
 
-     public $item;
-    public function __construct($item)
+    public function __construct()
     {
         //Take an item as input
-        $this->item=$item;
     }
 
     /**

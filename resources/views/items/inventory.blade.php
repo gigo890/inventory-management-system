@@ -72,13 +72,11 @@
 
                             {{-- MODALS MODIFIED FROM FLOWBITE MODAL--}}
                             <!-- Modal toggle -->
-                            <button  data-modal-target="edit-item-modal" data-modal-toggle="edit-item-modal" value={{ $item }} class="focus:outline-none text-white bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:focus:ring-yellow-900" type="button">
+                            <a type="button" href="{{ route('items.edit',$item) }}" class="focus:outline-none text-white bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:focus:ring-yellow-900">
                                 Edit
-                            </button>
+                            </a>
 
-                            <div id="edit-item-modal" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-modal md:h-full">
-                                <x-modals.edit-item :item=$item>{{ $item }}</x-modals.edit-item>
-                            </div>
+
 
                             <button data-modal-target="popup-modal" data-modal-toggle="popup-modal" class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900" type="button">
                             Remove
@@ -87,7 +85,7 @@
                             <div id="popup-modal" tabindex="-1" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
                                 <div class="relative p-4 w-full max-w-md max-h-full">
                                     <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
-                                        <button type="button" class="absolute top-3 end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="popup-modal">
+                                        <button type="button" class="absolute top-3 end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="popup-modal" >
                                             <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
                                                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
                                             </svg>
@@ -115,15 +113,25 @@
                 </tbody>
             </table>
         </div>
+        <div id="edit-item-modal" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-modal md:h-full">
+            <x-modals.edit-item id="edit-modal-input"></x-modals.edit-item>
+        </div>
     </div>
     <script src="{{ asset('backend/flowbite/dist/flowbite.js') }}">
 
-        let EditModal = new Modal(document.getElementById('edit-item-modal'))
+        let EditModal = new Modal(document.getElementById('edit-item-modal'));
+        let ModalInput = document.getElementById('edit-modal-input');
+        let item = $item;
 
-        document.getElementById('open-edit-modal').addEventListener("click", EditModal());
+        let btns = document.querySelectorAll('button');
+        for (i of btns){
+            i.addEventListener('click',EditModal());
+        }
 
         function EditModal(){
-            document.getElementById('edit-item-modal').classList.remove('hidden')
+            document.getElementById('edit-item-modal').classList.remove('hidden');
+            item = this.value;
+            document.getElementById('edit-modal-input').innerHTML = $item;
         }
     </script>
 </x-app-layout>
