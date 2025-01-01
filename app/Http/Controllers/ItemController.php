@@ -77,7 +77,7 @@ class ItemController extends Controller
      */
     public function edit(Item $item)
     {
-        return view('items.edit', ['item' => $item]);
+
     }
 
     /**
@@ -86,6 +86,28 @@ class ItemController extends Controller
     public function update(Request $request, Item $item)
     {
         //
+
+        $request->validate([
+            'name' => 'required',
+            'description' => 'required',
+            'image' => 'required',
+            'price' => 'required'
+        ]);
+        $path = 'images/'.time().'.'.request()->image->getClientOriginalExtension();
+
+        if($path != $item->image_path){
+            request()->image->move(public_path('images'), $path);
+        }
+
+        $item->name = $request->name;
+        $item->description = $request->description;
+        $item->dimensions = $request->dimensions;
+        $item->stock_amount = $request->stock;
+        $item->price = $request->price;
+        $item->image_path = $path;
+
+        $item->save();
+        return back()->with('success', 'Item updated successfully');
     }
 
     /**
