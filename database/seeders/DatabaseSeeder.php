@@ -19,5 +19,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'Test User',
             'email' => fake()->email(),
         ]);
+        $this->call(AdminSeeder::class);
+        $this->call(ItemSeeder::class);
     }
 }
