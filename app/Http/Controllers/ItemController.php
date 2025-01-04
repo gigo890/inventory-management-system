@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\EditItemRequest;
 use App\Models\Item;
 use Faker\Guesser\Name;
 use Illuminate\Http\Request;
@@ -16,14 +17,14 @@ class ItemController extends Controller
     public function index()
     {
         $user_id = Auth::id();
-        $items = Item::simplePaginate(6);
+        $items = Item::Paginate(6);
         return view("items.index")->with('items', $items);
     }
 
     public function inventory()
     {
         $user_id = Auth::id();
-        $items = Item::simplePaginate(10);
+        $items = Item::Paginate(10);
         return view('items.inventory')->with('items', $items);
     }
 
@@ -77,7 +78,7 @@ class ItemController extends Controller
      */
     public function edit(Item $item)
     {
-        //
+        return view('items.edit', ['item' => $item]);
     }
 
     /**
@@ -85,7 +86,29 @@ class ItemController extends Controller
      */
     public function update(Request $request, Item $item)
     {
-        //
+        //NEEDS FINISHING
+        //FORM SUBMISSION KEEPS REDIRECTING TO 'items/id'
+        //INSTEAD OF DOING WHAT IS IN THIS FUNCTION
+
+        $request->validate([
+            'name' => 'required',
+            'description' => 'required',
+            'price' => 'required'
+        ]);
+        if($request->image && $request->image != $item->image_path){
+            $path = 'images/'.time().'.'.request()->image->getClientOriginalExtension();
+            request()->image->move(public_path('images'), $path);
+            $item->image_path = $path;
+        }
+
+        $item->update([
+            'name' => $request->name,
+            'dimensions' => $request->dimensions,
+            'stock_amount' => $request->stock,
+            'price' => $request->price
+        ]);
+
+        return redirect()->route('inventory');
     }
 
     /**
