@@ -3,6 +3,7 @@
 use App\Models\Item;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ItemController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProfileController;
 
 Route::get('/', function () {
@@ -26,6 +27,8 @@ require __DIR__.'/auth.php';
 
 Route::get('/inventory',[ItemController::class, 'inventory'])->name('inventory');
 Route::resource('items',ItemController::class);
+
+Route::resource('users',UserController::class);
 
 // Route::controller(ItemController::class)->group(function() {
 //     Route::get('/items', 'index');
