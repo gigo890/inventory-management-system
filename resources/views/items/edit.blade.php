@@ -9,7 +9,8 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
             <x-back-button></x-back-button>
             <div class="bg-white p-6 overflow-hidden shadow-sm sm:rounded-lg max-w-2xl">
-                <form action="{{ route('items.update', $item) }}" enctype="multipart/form-data" id="edit-form" class="bg-white dark:bg-gray-200 p-6 overflow-hidden shadow-sm sm:rounded-lg max-w-2xl">
+                <form action="{{ route('items.update', $item) }}" method="POST" enctype="multipart/form-data" id="edit-form" class="bg-white dark:bg-gray-200 p-6 overflow-hidden shadow-sm sm:rounded-lg max-w-2xl">
+                    @method('put')
                     @csrf
                     <div class="grid gap-4 mb-4 sm:grid-cols-2">
                         <div>
@@ -31,6 +32,10 @@
                         <div class="sm:col-span-2">
                             <x-input-label for="description">Description</x-input-label>
                             <x-textarea name="description" id="description" rows="5" value="{{ $item->description }}" placeholder="Write a description..."></x-textarea>
+                        </div>
+                        <div class="sm:col-span-2">
+                            <x-input-label for="image">Image:</x-input-label>
+                            <input type="file" accept="image/*" name="image" class="mt-1" value="{{ $item->image_path }}" placeholder="Upload Image"></input>
                         </div>
                     </div>
                     <div class="flex items-center space-x-4">

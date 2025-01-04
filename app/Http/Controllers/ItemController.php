@@ -90,36 +90,25 @@ class ItemController extends Controller
         //FORM SUBMISSION KEEPS REDIRECTING TO 'items/id'
         //INSTEAD OF DOING WHAT IS IN THIS FUNCTION
 
-        // $request->validate([
-        //     'name' => 'required',
-        //     'description' => 'required',
-        //     'image' => 'required',
-        //     'price' => 'required'
-        // ]);
-        // $path = 'images/'.time().'.'.request()->image->getClientOriginalExtension();
+        $request->validate([
+            'name' => 'required',
+            'description' => 'required',
+            'price' => 'required'
+        ]);
+        if($request->image && $request->image != $item->image_path){
+            $path = 'images/'.time().'.'.request()->image->getClientOriginalExtension();
+            request()->image->move(public_path('images'), $path);
+            $item->image_path = $path;
+        }
 
-        // if($path != $item->image_path){
-        //     request()->image->move(public_path('images'), $path);
-        // }
+        $item->update([
+            'name' => $request->name,
+            'dimensions' => $request->dimensions,
+            'stock_amount' => $request->stock,
+            'price' => $request->price
+        ]);
 
-        // $item = Item::where('id' == $item->id);
-        // $item->name = $request->name;
-        // $item->description = $request->description;
-        // $item->dimensions = $request->dimensions;
-        // $item->stock_amount = $request->stock;
-        // $item->price = $request->price;
-        // $item->image_path = $path;
-
-        // $item->save();
-
-        // $request->$item->update([
-        //     'name' => $request->name,
-        //     'dimensions' => $request->dimensions,
-        //     'stock_amount' => $request->stock,
-        //     'price' => $request->price,
-        //     'image_path' => $request->path
-        // ]);
-        // return redirect()->route('inventory');
+        return redirect()->route('inventory');
     }
 
     /**
