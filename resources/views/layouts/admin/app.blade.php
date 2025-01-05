@@ -29,7 +29,8 @@
 
             <!-- Page Content -->
             <main>
-                <div class="flex">
+                <div class="flex flex-row">
+                    @include('layouts.admin.navigation')
                     {{ $slot }}
                 </div>
             </main>
