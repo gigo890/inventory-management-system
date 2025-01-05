@@ -21,5 +21,6 @@ class DatabaseSeeder extends Seeder
         ]);
         $this->call(AdminSeeder::class);
         $this->call(ItemSeeder::class);
+        $this->call(ProductSeeder::class);
     }
 }

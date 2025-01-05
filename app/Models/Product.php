@@ -2,22 +2,21 @@
 
 namespace App\Models;
 
-use Database\Factories\ItemFactory;
+use Database\Factories\ProductFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Item extends Model
+class Product extends Model
 {
-    // attributes that are not mass assignable
     protected $guarded = [];
 
     use HasFactory;
-
     protected static function newFactory()
     {
-        return ItemFactory::new();
+        return ProductFactory::new();
     }
-    public function product(){
-        return $this->belongsTo(Product::class);
+
+    public function items(){
+        return $this->hasMany(Item::class);
     }
 }

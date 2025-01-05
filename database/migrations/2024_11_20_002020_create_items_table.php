@@ -13,11 +13,9 @@ return new class extends Migration
     {
         Schema::create('items', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->longtext('description');
-            $table->string('dimensions')->default('none provided');
-            $table->integer('stock_amount')->default(0);
-            $table->integer('reserved_amount')->default(0);
+            $table->integer('product_id')->required();
+            $table->integer('branch_id')->required();
+            $table->integer('stock')->default(0);
             $table->timestamps();
         });
     }
