@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl leading-tight">
-            Items
+            Products
         </h2>
     </x-slot>
 
@@ -24,15 +24,15 @@
     {{-- CONTENT --}}
    <div class="py-12">
             <div class='justify-between justify-items-center m-4'>
-            {{ $items->links() }}
+            {{ $products->links() }}
             </div>
-        <div class="flex flex-row flex-wrap justify-center content-center mx-auto sm:px-6 lg:px-8 space-y-6">
-                @forelse ($items as $item)
-                    <x-index-item :item=$item>
-                        {{ $item }}
-                    </x-index-item>
+        <div class="flex flex-row flex-wrap justify-center content-center max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
+                @forelse ($products as $product)
+                    <x-index-product :product=$product>
+                        {{ $product }}
+                    </x-index-product>
                 @empty
-                <p>There are no items to display.</p>
+                <p>There are no products to display.</p>
                 @endforelse
             </div>
         </div>
