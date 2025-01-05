@@ -29,10 +29,8 @@
 
             <!-- Page Content -->
             <main>
-                <div class="flex">
-                    @if(Auth::user()->is_admin == 1)
-                        @include('layouts.admin.navigation')
-                    @endif
+                <div class="flex flex-row">
+                    @include('layouts.admin.navigation')
                     {{ $slot }}
                 </div>
             </main>
