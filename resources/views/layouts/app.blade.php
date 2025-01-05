@@ -30,9 +30,6 @@
             <!-- Page Content -->
             <main>
                 <div class="flex">
-                    @if(Auth::user()->is_admin == 1)
-                        @include('layouts.admin.navigation')
-                    @endif
                     {{ $slot }}
                 </div>
             </main>
