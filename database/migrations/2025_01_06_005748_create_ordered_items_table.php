@@ -11,8 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('items', function (Blueprint $table) {
-            $table->string('dimensions')->default('not provided')->change();
+        Schema::create('ordered_items', function (Blueprint $table) {
+            $table->integer('order_id');
+            $table->integer('item_id');
+            $table->timestamps();
         });
     }
 
@@ -21,8 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('items', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('ordered_items');
     }
 };

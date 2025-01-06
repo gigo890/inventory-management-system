@@ -16,9 +16,13 @@ class ItemController extends Controller
      */
     public function index()
     {
-        $user_id = Auth::id();
-        $items = Item::Paginate(6);
-        return view("items.index")->with('items', $items);
+        $user = Auth::user();
+        if($user->role == 'Admin'){
+            $items = Item::Paginate(6);
+        }else{
+        $items = Item::where('branch_id' == $user->branch_id)->Paginate(6);
+        }
+        return view("items.index",['items'=>$items, 'branch'=>$user->branch]);
     }
 
     public function inventory()
@@ -86,26 +90,8 @@ class ItemController extends Controller
      */
     public function update(Request $request, Item $item)
     {
-        //NEEDS FINISHING
-        //FORM SUBMISSION KEEPS REDIRECTING TO 'items/id'
-        //INSTEAD OF DOING WHAT IS IN THIS FUNCTION
-
-        $request->validate([
-            'name' => 'required',
-            'description' => 'required',
-            'price' => 'required'
-        ]);
-        if($request->image && $request->image != $item->image_path){
-            $path = 'images/'.time().'.'.request()->image->getClientOriginalExtension();
-            request()->image->move(public_path('images'), $path);
-            $item->image_path = $path;
-        }
-
         $item->update([
-            'name' => $request->name,
-            'dimensions' => $request->dimensions,
-            'stock_amount' => $request->stock,
-            'price' => $request->price
+            'stock' => $request->stock
         ]);
 
         return redirect()->route('inventory');

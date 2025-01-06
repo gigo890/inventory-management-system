@@ -29,9 +29,7 @@
 
             <!-- Page Content -->
             <main>
-                <div class="flex">
                     {{ $slot }}
-                </div>
             </main>
         </div>
     </body>

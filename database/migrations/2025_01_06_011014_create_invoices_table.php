@@ -11,8 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('items', function (Blueprint $table) {
-            $table->double('price')->default(0.00);
+        Schema::create('invoices', function (Blueprint $table) {
+            $table->id();
+            $table->integer('sale_id');
+            $table->string('file_path');
+            $table->timestamps();
         });
     }
 
@@ -21,8 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('_items_', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('invoices');
     }
 };

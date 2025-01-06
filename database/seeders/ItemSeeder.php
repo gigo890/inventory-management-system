@@ -16,5 +16,6 @@ class ItemSeeder extends Seeder
         Item::factory()
                 ->count(15)
                 ->create();
+        Item::factory()->create(['branch_id'=>2]);
     }
 }

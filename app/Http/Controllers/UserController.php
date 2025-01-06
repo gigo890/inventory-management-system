@@ -50,7 +50,7 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        if(Auth::user()->is_admin == false){
+        if(Auth::user()->role !== 'Admin'){
             abort(403);
         }
         return view('users.edit', ['user' => $user]);

@@ -9,7 +9,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
             <x-back-button></x-back-button>
             <div class="w-fill mx-20 flex justify-center">
-              <form action="{{ route('items.store') }}" method="post" enctype="multipart/form-data" class="bg-white dark:bg-gray-200 p-6 overflow-hidden shadow-sm sm:rounded-lg max-w-2xl">
+              <form action="{{ route('products.store') }}" method="post" enctype="multipart/form-data" class="bg-white dark:bg-gray-200 p-6 overflow-hidden shadow-sm sm:rounded-lg max-w-2xl">
                 @csrf
                 <x-text-input name="name" class="w-full" placeholder="Item name" value="{{ @old('name') }}"></x-text-input>
                 @error('name')
@@ -20,8 +20,8 @@
                     <div class="text-sm mt-1 text-red-500">{{ $message }}</div>
                 @enderror
                 <x-input-group>
-                    <x-input-label for="stock">Stock:</x-input-label>
-                    <x-number-input name="stock" min="0" class="" placeholder="##" value="0"></x-number-input>
+                    <x-input-label for="price">Price:</x-input-label>
+                    <x-number-input name="price" min="0" class="before:content-['£']" placeholder="£0" value=""></x-number-input>
                 </x-input-group>
                 <x-input-group>
                     <x-input-label for="image">Image:</x-input-label>
