@@ -16,9 +16,13 @@ class ItemController extends Controller
      */
     public function index()
     {
-        $user_id = Auth::id();
-        $items = Item::Paginate(6);
-        return view("items.index")->with('items', $items);
+        $user = Auth::user();
+        if($user->role == 'Admin'){
+            $items = Item::Paginate(6);
+        }else{
+        $items = Item::where('branch_id' == $user->branch_id)->Paginate(6);
+        }
+        return view("items.index",['items'=>$items, 'branch'=>$user->branch]);
     }
 
     public function inventory()
