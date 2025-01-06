@@ -1,11 +1,10 @@
-<x-app-layout>
+{{-- <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl leading-tight">
             Products
         </h2>
     </x-slot>
 
-    {{-- SEARCH --}}
     <div class="w-full">
     <form class="max-w-md mx-auto w-6/12 mt-2">
         <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
@@ -21,7 +20,6 @@
     </form>
     </div>
 
-    {{-- CONTENT --}}
    <div class="py-12">
             <div class='justify-between justify-items-center m-4'>
             {{ $products->links() }}
@@ -35,6 +33,81 @@
                 <p>There are no products to display.</p>
                 @endforelse
             </div>
+        </div>
+    </div>
+</x-app-layout> --}}
+<x-app-layout>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl leading-tight">
+            Item Inventory
+        </h2>
+    </x-slot>
+
+   <div class="py-12 m-4 ">
+        <a type="button" href="{{ route('products.create') }}" class=" m-4 mb-4 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+            + Add New Product
+        </a>
+
+        <div class='justify-between justify-items-center m-4'>
+            {{ $products->links() }}
+        </div>
+        <div class="relative overflow-x-auto shadow-md sm:rounded-lg border">
+            <table class="w-full text-sm text-left rtl:text-right  ">
+                <thead class="text-xs dark:text-gray-700 uppercase">
+                    <tr>
+                        <th scope="col" class="px-6 py-3">
+                            Id
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Name
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Image Path
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Description
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Price
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Action
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @forelse($products as $product)
+                    <tr class="h-20 border-b border-gray-200 justify-items-center items-center">
+
+                        <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap bg-gray-50">
+                            {{($product->id) }}
+                        </td>
+                        <th scope="row" class="px-6 py-4 font-bold">
+                            {{ ($product->name) }}
+                        </th>
+                        <td class="px-6 py-4">
+                            {{($product->image_path) }}
+                        </td>
+                        <td class="px-6 py-4 line-clamp-1">
+                            {{ ($product->description) }}
+                        </td>
+                        <td class="px-6 py-4">
+                            £{{ number_format($product->price, 2) }}
+                        </td>
+                        <td class="h-full px-6 py-4 flex justify-center justify-items-center align-center">
+                            <a type="button" href="{{ route('products.edit',$product) }}" class="focus:outline-none text-white bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:focus:ring-yellow-900">
+                                Edit
+                            </a>
+                            <button data-modal-target="popup-modal" data-modal-toggle="popup-modal" class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900" type="button">
+                                Remove
+                            </button>
+                        </td>
+                    </tr>
+                    @empty
+                    <p>No items to display.</p>
+                    @endforelse
+                </tbody>
+            </table>
         </div>
     </div>
 </x-app-layout>

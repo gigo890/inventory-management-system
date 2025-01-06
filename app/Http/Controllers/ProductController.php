@@ -24,7 +24,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        return view('products.create');
     }
 
     /**
@@ -48,7 +48,7 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        //
+        return view('products.edit',['product' => $product]);
     }
 
     /**
@@ -56,7 +56,24 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'description' => 'required',
+            'price' => 'required'
+        ]);
+        if($request->image && $request->image != $product->image_path){
+            $path = 'images/'.time().'.'.request()->image->getClientOriginalExtension();
+            request()->image->move(public_path('images'), $path);
+            $product->image_path = $path;
+        }
+
+        $product->update([
+            'name' => $request->name,
+            'description' => $request->description,
+            'price' => $request->price
+        ]);
+
+        return redirect()->route('products.index');
     }
 
     /**

@@ -20,6 +20,9 @@
                         <x-nav-link :href="route('inventory')" :active="request()->routeIs('inventory')">
                             {{ __('Inventory') }}
                         </x-nav-link>
+                        <x-nav-link :href="route('products.index')" :active="request()->routeIs('products.index')">
+                            {{ __('Product List') }}
+                        </x-nav-link>
 
                     @if(Auth::user()->is_admin)
                         <x-nav-link :href="route('users.index')" :active="request()->routeIs('users.index')">

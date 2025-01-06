@@ -86,26 +86,8 @@ class ItemController extends Controller
      */
     public function update(Request $request, Item $item)
     {
-        //NEEDS FINISHING
-        //FORM SUBMISSION KEEPS REDIRECTING TO 'items/id'
-        //INSTEAD OF DOING WHAT IS IN THIS FUNCTION
-
-        $request->validate([
-            'name' => 'required',
-            'description' => 'required',
-            'price' => 'required'
-        ]);
-        if($request->image && $request->image != $item->image_path){
-            $path = 'images/'.time().'.'.request()->image->getClientOriginalExtension();
-            request()->image->move(public_path('images'), $path);
-            $item->image_path = $path;
-        }
-
         $item->update([
-            'name' => $request->name,
-            'dimensions' => $request->dimensions,
-            'stock_amount' => $request->stock,
-            'price' => $request->price
+            'stock' => $request->stock
         ]);
 
         return redirect()->route('inventory');

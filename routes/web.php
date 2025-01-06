@@ -1,9 +1,11 @@
 <?php
 
 use App\Models\Item;
+use App\Models\Product;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 
 Route::get('/', function () {
@@ -29,6 +31,8 @@ Route::get('/inventory',[ItemController::class, 'inventory'])->name('inventory')
 Route::resource('items',ItemController::class);
 
 Route::resource('users',UserController::class);
+
+Route::resource('products', ProductController::class);
 
 // Route::controller(ItemController::class)->group(function() {
 //     Route::get('/items', 'index');
