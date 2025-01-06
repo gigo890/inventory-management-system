@@ -15,8 +15,8 @@
         </div>
         <div class="relative overflow-x-auto shadow-md sm:rounded-lg border">
             <table class="w-full text-sm text-left rtl:text-right  ">
-                <thead class="text-xs dark:text-gray-700 uppercase">
-                    <tr>
+                <thead class="text-xs uppercase bg-gray-300 border-gray-800 border-b-2 sm:rounded-t-lg">
+                    <tr class='divide-x divide-gray-500'>
                         <th scope="col" class="px-6 py-3">
                             Id
                         </th>
@@ -42,7 +42,7 @@
                 </thead>
                 <tbody>
                     @forelse($items as $item)
-                    <tr class="h-20 border-b border-gray-200 justify-items-center items-center">
+                    <tr class="border-b border-gray-200 justify-items-center items-center divide-x">
 
                         <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap bg-gray-50">
                             {{($item->id) }}

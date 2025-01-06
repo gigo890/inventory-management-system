@@ -39,7 +39,7 @@
                 </thead>
                 <tbody>
                     @forelse($users as $user)
-                    <tr class="border-b border-gray-200  justify-items-center items-center divide-x">
+                    <tr class="border-b border-gray-200 justify-items-center items-center divide-x">
 
                         <td class="px-6 py-2 font-medium text-gray-900 whitespace-nowrap bg-gray-50">
                             {{($user->id) }}
@@ -62,11 +62,11 @@
                         <td class="px-6 py-2">
                             {{ $user->status }}
                         </td>
-                        <td class=" px-6 py-2 ">
-                            <a type="button" href="{{ route('users.edit',$user) }}" class="focus:outline-none text-gray-800 bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:focus:ring-yellow-900">
+                        <td class="h-full py-2 flex justify-center justify-items-center align-center items-center">
+                            <a type="button" href="{{ route('users.edit',$user) }}" class="shrink focus:outline-none text-gray-800 bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 dark:focus:ring-yellow-900">
                                 Edit
                             </a>
-                            <button data-modal-target="popup-modal" data-modal-toggle="popup-modal" class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900" type="button">
+                            <button data-modal-target="popup-modal" data-modal-toggle="popup-modal" class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900" type="button">
                                 Disable
                             </button>
                         </td>
