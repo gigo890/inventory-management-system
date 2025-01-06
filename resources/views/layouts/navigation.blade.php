@@ -15,6 +15,10 @@
                     <x-nav-link :href="route('items.index')" :active="request()->routeIs('items.index')">
                         {{ __('Items') }}
                     </x-nav-link>
+                    {{-- <x-nav-link :href="route('order.create', Auth::user()->branch)" :active="request()->routeIs('order.create',Auth::user()->branch)">
+                        {{ __('New Order') }}
+                    </x-nav-link> --}}
+
                     {{--  CHECKING IF USER IS EMPLOYEE
                     @if(Auth::user()->is_admin)--}}
                         <x-nav-link :href="route('branch.show', 1)" :active="request()->routeIs('branch.show', 1)">
@@ -32,7 +36,6 @@
                             {{ __('Users') }}
                         </x-nav-link>
                     @endif
-
                 </div>
             </div>
 

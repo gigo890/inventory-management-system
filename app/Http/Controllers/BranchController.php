@@ -48,9 +48,11 @@ class BranchController extends Controller
         $branch = Branch::find($branch_id);
         if(Auth::user()->role == 'Admin'){
             $branches = Branch::all();
-            $sales = Sale::with(['user' => function ($query){
-                $query->where('branch_id', 'like', '%$branch_id%');
-            }]);
+
+            $sales = Sale::with(['user'])
+                        ->whereHas('user', function($q) use($branch_id){
+                            $q->where('branch_id', '=', $branch_id);
+                    })->get();
 
             return view('branches.sales', compact('branches', 'branch', 'sales'));
         }else{

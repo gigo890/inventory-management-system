@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\EditItemRequest;
+use App\Models\Branch;
 use App\Models\Item;
 use Faker\Guesser\Name;
 use Illuminate\Http\Request;
@@ -25,12 +26,14 @@ class ItemController extends Controller
         return view("items.index",['items'=>$items, 'branch'=>$user->branch]);
     }
 
-    public function inventory()
-    {
-        $user_id = Auth::id();
-        $items = Item::Paginate(10);
-        return view('items.inventory')->with('items', $items);
+    public function search(Request $request, Branch $branch){
     }
+    // public function inventory()
+    // {
+    //     $user_id = Auth::id();
+    //     $items = Item::Paginate(10);
+    //     return view('items.inventory')->with('items', $items);
+    // }
 
     /**
      * Show the form for creating a new resource.
@@ -94,7 +97,7 @@ class ItemController extends Controller
             'stock' => $request->stock
         ]);
 
-        return redirect()->route('inventory');
+        return redirect()->route('items.index');
     }
 
     /**

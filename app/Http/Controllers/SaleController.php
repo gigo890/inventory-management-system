@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Sale;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class SaleController extends Controller
 {
@@ -20,7 +21,8 @@ class SaleController extends Controller
      */
     public function create()
     {
-        //
+        $user = Auth::user();
+        return view("sales.create",['branch'=>$user->branch]);
     }
 
     /**
@@ -36,7 +38,7 @@ class SaleController extends Controller
      */
     public function show(Sale $sale)
     {
-        //
+        return view('sales.show')->with('sale', $sale);
     }
 
     /**

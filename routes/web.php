@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\SaleController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\BranchController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
@@ -30,8 +31,6 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__.'/auth.php';
 
-Route::get('/inventory',[ItemController::class, 'inventory'])->name('inventory');
-Route::resource('items',ItemController::class);
 
 Route::controller(BranchController::class)->group(function(){
     Route::get('/branches', 'index')->name('branch.index');
@@ -39,13 +38,22 @@ Route::controller(BranchController::class)->group(function(){
     Route::get('/branches/{branch}/report', 'report')->name('branch.report');
     Route::get('/branches/{branch}/sales', 'sales')->name('branch.sales');
 });
+Route::controller(ItemController::class)->group(function(){
+    Route::resource('/items',ItemController::class);
+    Route::get('/items/search', 'search')->name('items.search');
+});
 
 Route::controller(SaleController::class)->group(function(){
-    Route::get('branches/{branch}/sales/{sale}', 'show')->name('sale.show');
+    Route::get('/branches/{branch}/sales/{sale}', 'show')->name('sale.show');
+    Route::get('/sale/create', 'create')->name('sale.create');
 });
-Route::resource('users',UserController::class);
+Route::controller(OrderController::class)->group(function(){
+    Route::resource('/order',OrderController::class);
+    Route::get('/order/search', 'search')->name('order.search');
+});
+Route::resource('/users',UserController::class);
 
-Route::resource('products', ProductController::class);
+Route::resource('/products', ProductController::class);
 
 // Route::controller(ItemController::class)->group(function() {
 //     Route::get('/items', 'index');

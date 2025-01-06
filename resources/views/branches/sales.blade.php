@@ -43,19 +43,19 @@
                             {{ ($sale->order_id) }}
                         </th>
                         <td class="px-6 py-4">
-                            {{($item->user_id) }}
+                            {{($sale->user_id) }}
                         </td>
                         <td class="px-6 py-4 line-clamp-1">
-                            {{ ($item->amount_paid) }}
+                            {{ ($sale->amount_paid) }}
                         </td>
                         <td class="px-6 py-4">
-                            {{ $item->created_at }}
+                            {{ $sale->created_at }}
                         </td>
                         <td class="h-full px-6 py-4 flex justify-center justify-items-center align-center">
-                            <a type="button" href="{{ route('items.show', $item) }}" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
-                                View
+                            <a type="button" href="{{ route('sale.show', $sale) }}" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+                                View Details
                             </a>
-                            <a type="button" href="{{ route('items.edit',$item) }}" class="focus:outline-none text-white bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:focus:ring-yellow-900">
+                            <a type="button" href="{{ route('items.edit',$sale) }}" class="focus:outline-none text-white bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:focus:ring-yellow-900">
                                 Edit
                             </a>
                             <button class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900" type="button">
