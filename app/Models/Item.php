@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\OrderedItem;
 use Database\Factories\ItemFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -19,5 +20,8 @@ class Item extends Model
     }
     public function product(){
         return $this->belongsTo(Product::class);
+    }
+    public function orderedItem(){
+        return $this->hasMany(OrderedItem::class);
     }
 }
