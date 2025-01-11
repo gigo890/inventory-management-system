@@ -20,7 +20,10 @@
                             Name
                         </th>
                         <th scope="col" class="px-6 py-3">
-                            Item Count:
+                            Item Count
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Low Stock
                         </th>
                         <th scope="col" class="px-6 py-3">
                             Action
@@ -37,8 +40,11 @@
                         <th scope="row" class="px-6 py-4 font-bold">
                             {{ ($branch->name) }}
                         </th>
-                        <td class="px-6 py-4">
+                        <td scope="row" class="px-6 py-4">
                             {{ $branch->items->count() }}
+                        </td>
+                        <td scope="row" class="px-6 py-4">
+                            {{ $branch->items->where('stock', '<', 10)->count() }}
                         </td>
                         <td class="h-full px-6 py-4 flex justify-center justify-items-center align-center">
                             <a type="button" href="{{ route('branch.report', $branch->id) }}" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
