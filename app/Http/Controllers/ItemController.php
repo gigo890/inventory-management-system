@@ -97,7 +97,11 @@ class ItemController extends Controller
             'stock' => $request->stock
         ]);
 
-        return redirect()->route('items.index');
+        if(Auth::user()->role == 'Admin'){
+            return redirect(route('branch.show', $item->branch));
+        }else{
+            return redirect(route('items.index'));
+        }
     }
 
     /**
