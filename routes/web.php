@@ -13,10 +13,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 
 Route::get('/', function () {
-    return view('welcome');
-});
-Route::get('/index', function () {
-    return view('item.index');
+    return view('auth.login');
 });
 
 Route::get('/dashboard', function () {
@@ -39,8 +36,9 @@ Route::controller(BranchController::class)->group(function(){
     Route::get('/branches/{branch}/sales', 'sales')->name('branch.sales');
 });
 Route::controller(ItemController::class)->group(function(){
-    Route::resource('/items',ItemController::class);
     Route::get('/items/search', 'search')->name('items.search');
+    Route::resource('/items',ItemController::class);
+
 });
 
 Route::controller(SaleController::class)->group(function(){
@@ -48,8 +46,8 @@ Route::controller(SaleController::class)->group(function(){
     Route::get('/sale/create', 'create')->name('sale.create');
 });
 Route::controller(OrderController::class)->group(function(){
+    Route::get('/test', 'add')->name('order.test');
     Route::resource('/order',OrderController::class);
-    Route::get('/order/search', 'search')->name('order.search');
 });
 Route::resource('/users',UserController::class);
 

@@ -6,6 +6,7 @@ use App\Models\Item;
 use App\Models\Order;
 use App\Models\Branch;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class OrderController extends Controller
 {
@@ -22,34 +23,36 @@ class OrderController extends Controller
      */
     public function create()
     {
-
+        return view('orders.create');
     }
-    public function search(Request $request, Branch $branch){
-        $search = $request->get('search');
-        $results = Item::with(['product'=>function($query){
-            $query->where('name','like','%$search%');
-        }])->orWhere('id' == $search);
-        return redirect()->route('order.create')->with(compact('branch', 'results'));
-    }
-
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Branch $branch)
+    public function store()
     {
-        $order = new Order(['branch_id'=>$branch->id]);
+        $order = new Order(['branch_id'=>Auth::user()->branch]);
         $order->save();
-        return route('order.show', $order);
+        return redirect()->route('order.show', $order);
     }
+
+
 
     /**
      * Display the specified resource.
      */
     public function show(Order $order)
     {
-        return view('orders.show');
+        return view('orders.show', ['order' => $order]);
     }
 
+    /**
+     * Add item to order
+     *
+     */
+    public function add(Order $order, int $item_id)
+    {
+        dd($order->pivot);
+    }
     /**
      * Show the form for editing the specified resource.
      */

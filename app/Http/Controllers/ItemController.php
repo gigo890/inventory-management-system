@@ -2,13 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\EditItemRequest;
-use App\Models\Branch;
 use App\Models\Item;
+use App\Models\Order;
+use App\Models\Branch;
+use App\Models\Product;
 use Faker\Guesser\Name;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\EditItemRequest;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Database\Eloquent\Collection;
 
 class ItemController extends Controller
 {
@@ -26,8 +29,51 @@ class ItemController extends Controller
         return view("items.index",['items'=>$items, 'branch'=>$user->branch]);
     }
 
-    public function search(Request $request, Branch $branch){
+    public function search(Request $request)
+    {
+        $output="";
+        $items = new Collection([]);
+        if($request->search != ""){
+            $products = Product::where('name', 'LIKE', '%'.$request->search.'%')->get();
+            foreach($products as $product){
+                $items = $items->merge($product->items);
+            }
+        }
+        // $items=$products->where('branch_id' == Auth::user()->branch_id)->
+        //                 where('product.name', 'like', $request->search)->get();
+
+        if($items)
+        {
+            // dd($items);
+            foreach($items as $item)
+            {
+                $output .=
+                    '<div class="flex flex-col items-center bg-white border border-gray-200 shadow md:flex-row md:max-w-xl ">
+                        <img class="object-cover w-full rounded-t-lg h-96 md:h-auto md:w-48 md:rounded-none md:rounded-s-lg" src="'.asset($item->product->image_path).'" alt="">
+                        <div class="flex flex-col justify-between p-4 leading-normal">
+                            <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">'.$item->product->name.'</h5>
+                            <p class="mb-3 font-normal text-gray-700">£'.$item->product->price.'</p>
+                        </div>
+
+                    </div>';
+// <a type="button" href="'.route('order.add',$order, $item->id).'" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+//                                 Add
+//                         </a>
+                    // <div class="">'.
+                    //     '<img src="'.asset($item->product->image_path).'"></img>'.
+                    //     '<div class="">'.
+                    //         '<h1 class="my-2">'.$item->product->name.'</h1>'.
+                    //         '<h3 class="">'.$item->product->price.'</h3>'.
+                    //     '</div>'.
+                    // '</div>
+            }
+            return response($output);
+        }else{
+
+        }
     }
+    // public function search(Request $request, Branch $branch){
+    // }
     // public function inventory()
     // {
     //     $user_id = Auth::id();

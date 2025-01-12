@@ -15,9 +15,9 @@
                     <x-nav-link :href="route('items.index')" :active="request()->routeIs('items.index')">
                         {{ __('Items') }}
                     </x-nav-link>
-                    {{-- <x-nav-link :href="route('order.create', Auth::user()->branch)" :active="request()->routeIs('order.create',Auth::user()->branch)">
+                    <x-nav-link :href="route('order.create')" :active="request()->routeIs('order.create')">
                         {{ __('New Order') }}
-                    </x-nav-link> --}}
+                    </x-nav-link>
 
                     {{--  CHECKING IF USER IS EMPLOYEE
                     @if(Auth::user()->is_admin)--}}
