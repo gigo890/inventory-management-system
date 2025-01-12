@@ -12,7 +12,7 @@
 
             <div class="w-fill mx-20 md:grid md:grid-cols-2">
 
-                <div id="item-search-display" class="mt-6" >
+                <div id="item-search-display" class="rounded-lg" >
 
                 </div>
                 <div class="md:w-full">
