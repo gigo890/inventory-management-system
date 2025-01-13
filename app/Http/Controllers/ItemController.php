@@ -32,19 +32,19 @@ class ItemController extends Controller
     public function search(Request $request)
     {
         $output="";
+        $order=Order::find($request->order);
         $items = new Collection([]);
         if($request->search != ""){
             $products = Product::where('name', 'LIKE', '%'.$request->search.'%')->get();
             foreach($products as $product){
                 $items = $items->merge($product->items);
             }
+        }else{
+            return '<h3 class="text-center mt-5">Please search for an Item</h3>';
         }
-        // $items=$products->where('branch_id' == Auth::user()->branch_id)->
-        //                 where('product.name', 'like', $request->search)->get();
 
         if($items)
         {
-            // dd($items);
             foreach($items as $item)
             {
                 $output .=
@@ -53,23 +53,16 @@ class ItemController extends Controller
                         <div class="flex flex-col justify-between p-4 leading-normal">
                             <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">'.$item->product->name.'</h5>
                             <p class="mb-3 font-normal text-gray-700">£'.$item->product->price.'</p>
+                            <a href="/order/add/'.$request->order.'/'.$item->id.'" type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+                                Add
+                            </a>
                         </div>
-
                     </div>';
-// <a type="button" href="'.route('order.add',$order, $item->id).'" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
-//                                 Add
-//                         </a>
-                    // <div class="">'.
-                    //     '<img src="'.asset($item->product->image_path).'"></img>'.
-                    //     '<div class="">'.
-                    //         '<h1 class="my-2">'.$item->product->name.'</h1>'.
-                    //         '<h3 class="">'.$item->product->price.'</h3>'.
-                    //     '</div>'.
-                    // '</div>
             }
             return response($output);
-        }else{
 
+        }else{
+            return "No Items Found";
         }
     }
     // public function search(Request $request, Branch $branch){

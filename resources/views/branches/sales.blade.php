@@ -4,7 +4,7 @@
     </x-slot>
 
    <div class="py-12 m-4 ">
-    WORK IN PROGRESS
+        <h1>SALES</h1>
         <div class="relative overflow-x-auto shadow-md sm:rounded-lg border">
             <table class="w-full text-sm text-left rtl:text-right  ">
                 <thead class="text-xs uppercase bg-gray-300 border-gray-800 border-b-2 sm:rounded-t-lg">
@@ -46,14 +46,14 @@
                             {{($sale->user_id) }}
                         </td>
                         <td class="px-6 py-4 line-clamp-1">
-                            {{ ($sale->amount_paid) }}
+                            £{{ ($sale->amount_paid) }}
                         </td>
                         <td class="px-6 py-4">
                             {{ $sale->created_at }}
                         </td>
                         <td class="h-full px-6 py-4 flex justify-center justify-items-center align-center">
-                            <a type="button" href="{{ route('sale.show', $sale) }}" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
-                                View Details
+                            <a type="button" href="/branches/{{ $branch->id }}/sales/{{ $sale->id }}" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+                                View Invoice
                             </a>
                             <a type="button" href="{{ route('items.edit',$sale) }}" class="focus:outline-none text-white bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:focus:ring-yellow-900">
                                 Edit

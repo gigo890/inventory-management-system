@@ -23,9 +23,9 @@ class ItemFactory extends Factory
     public function definition(): array
     {
         return [
-            'product_id' => 1,
-            'branch_id' => 1,
-            'stock' => 20,
+            'product_id' => fake()->numberBetween(1,10),
+            'branch_id' => fake()->numberBetween(1,5),
+            'stock' => fake()->randomNumber(3, false),
         ];
     }
 }

@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Sale;
+use App\Models\User;
 use App\Models\Branch;
 use Illuminate\Http\Request;
+use FontLib\TrueType\Collection;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Builder;
 
@@ -39,7 +41,25 @@ class BranchController extends Controller
         $branch = Branch::find($branch_id);
         if(Auth::user()->role == 'Admin'){
             $branches = Branch::all();
-            return view('branches.report', compact('branches', 'branch'));
+
+            $total = 0;//total revenue
+            $salesAmount = 0; //amount of sales
+
+            foreach($branch->users as $user){
+                foreach($user->sales as $sale){
+                    $total = $total + $sale->amount_paid;
+                    $salesAmount++;
+                }
+            }
+
+            //highest staff sales
+            $staff = User::where('branch_id' ,"=", $branch_id)
+                        ->withCount('sales')
+                        ->orderBy('sales_count', 'desc')->limit(3)->get();
+
+            //highest sale
+            $highestSale = Sale::select('amount_paid')->max('amount_paid');
+            return view('branches.report', compact('branches', 'branch', 'total', 'staff', 'highestSale', 'salesAmount'));
         }else{
 
         }
@@ -49,14 +69,13 @@ class BranchController extends Controller
         if(Auth::user()->role == 'Admin'){
             $branches = Branch::all();
 
-            $sales = Sale::with(['user'])
-                        ->whereHas('user', function($q) use($branch_id){
-                            $q->where('branch_id', '=', $branch_id);
-                    })->get();
+            $sales = Sale::whereRelation('user', 'branch_id', '=', $branch->id)->get();
 
             return view('branches.sales', compact('branches', 'branch', 'sales'));
-        }else{
-
+        }
+        else
+        {
+            return route('sales.index', $branch);
         }
     }
 

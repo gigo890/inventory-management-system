@@ -5,9 +5,9 @@
     @endforeach
 </select>
 <div class="inline pt-6 divide-x-2 divide-solid divide-white">
-    <a href="{{ route('branch.report', $branch->id) }}" class="px-3">Performance</a>
-    <a href="{{ route('branch.show', $branch->id) }}" class="px-3">Stock</a>
-    <a href="{{ route('branch.sales', $branch->id) }}" class="px-3">Sales</a>
+    <a href="{{ route('branch.report', $branch->id) }}" class="px-3 hover:text-gray-500 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out">Performance</a>
+    <a href="{{ route('branch.show', $branch->id) }}" class="px-3 hover:text-gray-500 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out"">Stock</a>
+    <a href="{{ route('branch.sales', $branch->id) }}" class="px-3 hover:text-gray-500 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out"">Sales</a>
 </div>
 
 <script>

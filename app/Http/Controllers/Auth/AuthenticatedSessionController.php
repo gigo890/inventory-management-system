@@ -26,8 +26,22 @@ class AuthenticatedSessionController extends Controller
     {
         $request->authenticate();
 
+
+
         $request->session()->regenerate();
 
+        if(Auth::user()->status == 'disabled'){
+            Auth::logout();
+
+            $request->session()->invalidate();
+
+            $request->session()->regenerateToken();
+
+            return redirect()->route('login');
+        }
+        if(Auth::user()->role == 'Admin'){
+            return redirect()->route('branch.index');
+        }
         return redirect()->intended(route('items.index', absolute: false));
     }
 

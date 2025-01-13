@@ -30,7 +30,7 @@ class OrderController extends Controller
      */
     public function store()
     {
-        $order = new Order(['branch_id'=>Auth::user()->branch]);
+        $order = new Order(['branch_id'=>Auth::user()->branch->id]);
         $order->save();
         return redirect()->route('order.show', $order);
     }
@@ -45,14 +45,6 @@ class OrderController extends Controller
         return view('orders.show', ['order' => $order]);
     }
 
-    /**
-     * Add item to order
-     *
-     */
-    public function add(Order $order, int $item_id)
-    {
-        dd($order->pivot);
-    }
     /**
      * Show the form for editing the specified resource.
      */

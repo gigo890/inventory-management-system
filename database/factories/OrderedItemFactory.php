@@ -5,9 +5,9 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Order>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\OrderedItem>
  */
-class OrderFactory extends Factory
+class OrderedItemFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -17,8 +17,8 @@ class OrderFactory extends Factory
     public function definition(): array
     {
         return [
-            'total' => fake()->randomFloat(2, 0.99, 99.99),
-            'branch_id' => fake()->numberBetween(1,5),
+            'order_id' => fake()->numberBetween(1,100),
+            'item_id' => fake()->numberBetween(1,50)
         ];
     }
 }

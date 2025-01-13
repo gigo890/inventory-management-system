@@ -10,9 +10,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Sale extends Model
 {
+    protected $guarded = [];
     use HasFactory;
     public function order(){
-        return $this->hasOne(Order::class);
+        return $this->belongsTo(Order::class);
     }
     public function invoice(){
         return $this->hasOne(Invoice::class);

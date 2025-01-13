@@ -14,12 +14,13 @@ class SaleFactory extends Factory
      *
      * @return array<string, mixed>
      */
+    private static $order = 1;
     public function definition(): array
     {
         return [
-            'order_id' => 1,
+            'order_id' => self::$order++,
             'user_id' => 1,
-            'amount_paid' => 5,
+            'amount_paid' => fake()->randomFloat(2,0.99,99.99),
         ];
     }
 }

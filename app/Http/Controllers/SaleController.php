@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Sale;
+use App\Models\Order;
+use App\Models\OrderedItem;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -19,26 +21,39 @@ class SaleController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(int $order_id)
     {
-        $user = Auth::user();
-        return view("sales.create",['branch'=>$user->branch]);
+        return view("sales.create")->with('order',Order::find($order_id));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(int $order_id)
     {
-        //
+        $order = Order::find($order_id);
+
+        $sale = new Sale([
+            'order_id' => $order_id,
+            'user_id' => Auth::id(),
+            'amount_paid' => $order->total
+        ]);
+        $sale->save();
+
+        foreach($sale->order->orderedItems as $orderedItem){
+            $orderedItem->item->decrement('stock');
+        }
+
+        return redirect()->route('items.index');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Sale $sale)
+    public function show(int $branch_id, int $sale_id)
     {
-        return view('sales.show')->with('sale', $sale);
+        $sale = Sale::find($sale_id);
+        return view('sales.show')->with('sale',$sale);
     }
 
     /**
