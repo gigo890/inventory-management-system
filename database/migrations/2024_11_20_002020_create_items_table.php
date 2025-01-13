@@ -16,6 +16,7 @@ return new class extends Migration
             $table->integer('product_id')->required();
             $table->integer('branch_id')->required();
             $table->integer('stock')->default(0);
+            $table->boolean('is_disabled')->default(true);
             $table->timestamps();
         });
     }

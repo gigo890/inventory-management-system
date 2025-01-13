@@ -73,7 +73,8 @@ class UserController extends Controller
 
         $user->update([
             'name'=>$request->name,
-            'email'=>$request->email
+            'email'=>$request->email,
+            'status'=>$request->status
         ]);
         return redirect()->route('users.index');
     }
@@ -83,6 +84,9 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        //
+        $user->update([
+            'status' => 'disabled'
+        ]);
+        $user->save();
     }
 }

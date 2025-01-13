@@ -17,9 +17,9 @@ class ProductFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => 'IKEA Rat',
-            'description' => 'A very handsome little critter from the well known swedish store, IKEA. Their rotundness varies, but is often enhanced after a quick trip to the laundrette.',
-            'price' => 4.99,
+            'name' => fake()->name(),
+            'description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+            'price' => fake()->randomFloat(2, 0.99, 99.99),
             'image_path' => '/images/1732206501.png'
         ];
     }

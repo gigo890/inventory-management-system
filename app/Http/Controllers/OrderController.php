@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Item;
 use App\Models\Order;
+use App\Models\Branch;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class OrderController extends Controller
 {
@@ -20,23 +23,26 @@ class OrderController extends Controller
      */
     public function create()
     {
-        //
+        return view('orders.create');
     }
-
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store()
     {
-        //
+        $order = new Order(['branch_id'=>Auth::user()->branch->id]);
+        $order->save();
+        return redirect()->route('order.show', $order);
     }
+
+
 
     /**
      * Display the specified resource.
      */
     public function show(Order $order)
     {
-        //
+        return view('orders.show', ['order' => $order]);
     }
 
     /**

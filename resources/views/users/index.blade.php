@@ -1,18 +1,14 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl leading-tight">
-            Item Inventory
+            Users
         </h2>
     </x-slot>
 
-   <div class="py-12 m-4 ">
-        <a type="button" href="{{ route('users.create') }}" class=" m-4 mb-4 text-white bg-green-200 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 focus:outline-none dark:focus:ring-blue-800">
+   <div class="py-12 m-4 flex flex-col">
+        <a type="button" href="{{ route('users.create') }}" class="m-4 mb-4 w-fit text-white bg-blue-200 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 focus:outline-none dark:focus:ring-blue-800">
             + Add New User
         </a>
-
-        <div class='justify-between justify-items-center m-4'>
-            {{ $users->links() }}
-        </div>
         <div class="relative overflow-x-auto shadow-md sm:rounded-lg border">
             <table class="w-full text-sm text-left rtl:text-right ">
                 <thead class="text-xs uppercase bg-gray-300 border-gray-800 border-b-2 sm:rounded-t-lg">
@@ -50,15 +46,9 @@
                         <td class="px-6 py-2">
                             {{($user->email) }}
                         </td>
-                        @if($user->is_admin)
                         <td class="px-6 py-2">
-                            Admin
+                            {{ $user->role }}
                         </td>
-                        @else
-                        <td class="px-6 py-2">
-                            Role
-                        </td>
-                        @endif
                         <td class="px-6 py-2">
                             {{ $user->status }}
                         </td>
@@ -76,6 +66,9 @@
                     @endforelse
                 </tbody>
             </table>
+            <div class='justify-between justify-items-center m-4'>
+                {{ $users->links() }}
+            </div>
         </div>
     </div>
 </x-app-layout>

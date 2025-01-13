@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Models\Branch;
+use App\Models\Product;
 use App\Models\OrderedItem;
 use Database\Factories\ItemFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -23,5 +25,8 @@ class Item extends Model
     }
     public function orderedItem(){
         return $this->hasMany(OrderedItem::class);
+    }
+    public function branch(){
+        return $this->belongsTo(Branch::class);
     }
 }
