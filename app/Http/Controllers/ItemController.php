@@ -32,17 +32,17 @@ class ItemController extends Controller
     public function search(Request $request)
     {
         $output="";
+        $branch_id = Auth::user()->branch_id;
         $order=Order::find($request->order);
         $items = new Collection([]);
         if($request->search != ""){
             $products = Product::where('name', 'LIKE', '%'.$request->search.'%')->get();
             foreach($products as $product){
-                $items = $items->merge($product->items);
+                $items = $items->merge($product->items()->get()->where('branch_id', '=', $branch_id));
             }
         }else{
             return '<h3 class="text-center mt-5">Please search for an Item</h3>';
         }
-
         if($items)
         {
             foreach($items as $item)
